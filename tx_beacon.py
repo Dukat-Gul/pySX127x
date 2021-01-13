@@ -23,6 +23,7 @@
 
 
 import sys
+from array import array
 from time import sleep
 from SX127x.LoRa import *
 from SX127x.LoRaArgumentParser import LoRaArgumentParser
@@ -64,7 +65,10 @@ class LoRaBeacon(LoRa):
             sys.exit(0)
         BOARD.led_off()
         sleep(args.wait)
-        self.write_payload([0x0f])
+        message = "Hello > %d" % self.tx_counter
+        sys.stdout.write(", %s" % message)
+        payload = array('b', message)
+        self.write_payload(list(payload))
         BOARD.led_on()
         self.set_mode(MODE.TX)
 
@@ -90,10 +94,14 @@ class LoRaBeacon(LoRa):
 
     def start(self):
         global args
-        sys.stdout.write("\rstart")
-        self.tx_counter = 0
+        sys.stdout.write("\rStart")
+        self.tx_counter = 1
         BOARD.led_on()
-        self.write_payload([0x0f])
+        sys.stdout.write("\rtx #%d" % self.tx_counter)
+        message = "Hello > %d" % self.tx_counter
+        sys.stdout.write(", %s" % message)
+        payload = array('b', message)
+        self.write_payload(list(payload))
         self.set_mode(MODE.TX)
         while True:
             sleep(1)
@@ -102,15 +110,16 @@ lora = LoRaBeacon(verbose=False)
 args = parser.parse_args(lora)
 
 lora.set_pa_config(pa_select=1)
-#lora.set_rx_crc(True)
+lora.set_rx_crc(True)
+#lora.set_coding_rate(CODING_RATE.CR4_5)
 #lora.set_agc_auto_on(True)
 #lora.set_lna_gain(GAIN.NOT_USED)
-#lora.set_coding_rate(CODING_RATE.CR4_6)
 #lora.set_implicit_header_mode(False)
 #lora.set_pa_config(max_power=0x04, output_power=0x0F)
 #lora.set_pa_config(max_power=0x04, output_power=0b01000000)
 #lora.set_low_data_rate_optim(True)
-#lora.set_pa_ramp(PA_RAMP.RAMP_50_us)
+#lora.set_pa_ramp(PA_RAMP.RAMP_v50_us)
+lora.set_sync_word(0x34)
 
 
 print(lora)
