@@ -1,3 +1,25 @@
+# Note
+This fork is a modification to:
+ - Supports boards that connect the NSS pin to GPIO other than CE0 or CE1
+ - Remove code of BOARD2
+
+I have tested it with a single-channel LoRaWan gateway board from M2M.
+(http://lorawan.lnwshop.com/product/34/shield-%E0%B8%AA%E0%B8%B3%E0%B8%AB%E0%B8%A3%E0%B8%B1%E0%B8%9A-%E0%B8%97%E0%B8%B3-single-channel-gateway-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-raspberry-pi4-pi3-b-%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD-b)
+
+|    M2M LoRaWan    |  RaspPi GPIO  |
+|:------------------|:-------------:|
+|        MOSI       | GPIO 10       |
+|        MISO       | GPIO 9        |
+|     SCK (SCLK)    | GPIO 11       |
+|        NSS        | GPIO 25       |
+|     DIO0 (IRQ)    | GPIO 4        |
+|        DIO1       | None          |
+|        DIO2       | None          |
+|        DIO3       | None          |
+|     RST (Reset)   | GPIO 17       |
+|        LED        | GPIO 23       |
+
+
 # This fork - pyLoRa
 This fork is an adaptation and an improved version of the original mayeranalytic work (mayeranalytics/pySX127x)
 pyLoRa can be used to communicate with the Arduino through the RADIOHEAD library, for more information see these examples -> [rpsreal/LoRa_Ra-02_Arduino](https://github.com/rpsreal/LoRa_Ra-02_Arduino). 
