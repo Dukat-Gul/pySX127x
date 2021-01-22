@@ -65,7 +65,10 @@ class BOARD:
         GPIO.setup(BOARD.RST, GPIO.OUT)
         GPIO.setup(BOARD.NSS, GPIO.OUT)
         GPIO.output(BOARD.LED, 0)
+        GPIO.output(BOARD.RST, 0)
+        time.sleep(.01)
         GPIO.output(BOARD.RST, 1)
+        time.sleep(.01)
         GPIO.output(BOARD.NSS, 1)
 
         # switch
