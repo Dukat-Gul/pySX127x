@@ -19,6 +19,19 @@ I have tested it with a single-channel LoRaWan gateway board from M2M.
 |     RST (Reset)   | GPIO 17       |
 |        LED        | GPIO 23       |
 
+Code in file SX127x/board_config.py
+```python
+    ...
+    # Note that the BCOM numbering for the GPIOs is used.
+    DIO0 = 4    # RaspPi GPIO 4
+    DIO1 = None # No connection - not necessary
+    DIO2 = None # No connection - not necessary
+    DIO3 = None # No connection - not necessary
+    NSS  = 25   # RaspPi GPIO 25 connects to SPI CS pin (Not connect to CE0 or CE1)
+    RST  = 17   # RaspPi GPIO 17
+    LED  = 23   # RaspPi GPIO 23 connects to the LED
+    ...
+```
 
 # This fork - pyLoRa
 This fork is an adaptation and an improved version of the original mayeranalytic work (mayeranalytics/pySX127x)
