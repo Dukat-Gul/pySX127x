@@ -20,8 +20,11 @@
 # You should have received a copy of the GNU General Public License along with pySX127.  If not, see
 # <http://www.gnu.org/licenses/>.
 
-
-import RPi.GPIO as GPIO
+import os
+if os.uname()[2][-4:]=="unxi":
+    import OPi.GPIO as GPIO
+else:
+    import RPi.GPIO as GPIO
 import spidev
 
 import time
