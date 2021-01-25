@@ -19,6 +19,16 @@ I have tested it with a single-channel LoRaWan gateway board from M2M.
 |     RST (Reset)   | GPIO 17       |
 |        LED        | GPIO 23       |
 
+Install RPi.GPIO, library for Raspberry Pi:
+```bash
+pip install RPi.GPIO
+```
+
+Install OPi.GPIO, library for Orange Pi
+```bash
+pip install OPi.GPIO
+```
+
 Code in file SX127x/board_config.py
 ```python
     ...
